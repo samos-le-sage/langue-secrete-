@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de langue personnalisée</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Convertisseur de langue personnalisée</h1>
+
+    <label for="originalText">Texte original :</label>
+    <textarea id="originalText" placeholder="Entrez le texte à convertir..."></textarea>
+
+    <br>
+
+    <button onclick="convertToCustomLang()">Convertir en langue personnalisée</button>
+    <button onclick="convertToNormalLang()">Convertir en alphabet normal</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        // Dictionnaire pour la conversion vers la langue personnalisée
+        const toCustomLang = {
+            'A': 'N', 'B': 'O', 'C': 'P', 'D': 'Q', 'E': 'R', 'F': 'S', 'G': 'T', 'H': 'U', 'I': 'V', 'J': 'W',
+            'K': 'X', 'L': 'Y', 'M': 'Z', 'N': 'A', 'O': 'B', 'P': 'C', 'Q': 'D', 'R': 'E', 'S': 'F', 'T': 'G',
+            'U': 'H', 'V': 'I', 'W': 'J', 'X': 'K', 'Y': 'L', 'Z': 'M'
+        };
+
+        // Fonction pour convertir en langue personnalisée
+        function convertToCustomLang() {
+            const text = document.getElementById('originalText').value.toUpperCase();
+            let convertedText = '';
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (toCustomLang[char]) {
+                    convertedText += toCustomLang[char];
+                } else {
+                    convertedText += char; // Garde les caractères qui ne sont pas dans le dictionnaire
+                }
+            }
+
+            document.getElementById('result').innerText = convertedText;
+        }
+
+        // Dictionnaire pour la conversion vers l'alphabet normal
+        const toNormalLang = {
+            'N': 'A', 'O': 'B', 'P': 'C', 'Q': 'D', 'R': 'E', 'S': 'F', 'T': 'G', 'U': 'H', 'V': 'I', 'W': 'J',
+            'X': 'K', 'Y': 'L', 'Z': 'M', 'A': 'N', 'B': 'O', 'C': 'P', 'D': 'Q', 'E': 'R', 'F': 'S', 'G': 'T',
+            'H': 'U', 'I': 'V', 'J': 'W', 'K': 'X', 'L': 'Y', 'M': 'Z'
+        };
+
+        // Fonction pour convertir en alphabet normal
+        function convertToNormalLang() {
+            const text = document.getElementById('originalText').value.toUpperCase();
+            let convertedText = '';
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (toNormalLang[char]) {
+                    convertedText += toNormalLang[char];
+                } else {
+                    convertedText += char; // Garde les caractères qui ne sont pas dans le dictionnaire
+                }
+            }
+
+            document.getElementById('result').innerText = convertedText;
+        }
+    </script>
+
+</body>
+</html>
